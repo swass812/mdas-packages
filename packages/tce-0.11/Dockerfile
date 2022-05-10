@@ -5,8 +5,8 @@ RUN INSTALL_PKGS="findutils" && \
     dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     dnf clean -y --enablerepo='*' all
 
-COPY . /opt/packages/tce-tools/
+COPY . /opt/packages/tce-0.11/
 
-WORKDIR /opt/packages/tce-tools
+WORKDIR /opt/packages/tce-0.11
 
 RUN ./build.sh

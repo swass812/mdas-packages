@@ -23,9 +23,8 @@ jobs:
         run: |
           echo "REPOSITORY_SHA7=${GITHUB_SHA::7}" >>${GITHUB_ENV}
 
-      - name: Build and publish tce-tools
+      - name: Build and publish tce-0.11
         shell: bash
         run: |
-          packages/tce-tools/build.sh
-          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/tce-tools:sha-${REPOSITORY_SHA7} -f packages/tce-tools --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
-
+          packages/tce-0.11/build.sh
+          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/tce-0.11:sha-${REPOSITORY_SHA7} -f packages/tce-0.11 --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
