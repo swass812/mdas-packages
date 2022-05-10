@@ -1,7 +1,22 @@
 #!/bin/bash
 
-mkdir $HOME/{.cache,.config,.local}
+set -x
+set -eo pipefail
 
-cp -r /opt/packages/tce-tools/.cache/. $HOME/.cache/
-cp -r /opt/packages/tce-tools/.config/. $HOME/.config/
-cp -r /opt/packages/tce-tools/.local/. $HOME/.local/
+mkdir -p /opt/packages/tce-tools/tce-0.11.0
+
+tar -C /opt/packages/tce-tools/tce-0.11.0 --strip-components 1 -xf /opt/packages/tce-tools/tce-0.11.0.tar.gz
+
+mkdir -p $HOME/.config
+
+rm -rf $HOME/.config/tanzu-plugins
+
+ln -s /opt/packages/tce-tools/tce-0.11.0/default-local $HOME/.config/tanzu-plugins
+
+rm -rf /opt/packages/tce-tools/bin
+
+mkdir -p /opt/packages/tce-tools/bin
+
+ln -s /opt/packages/tce-tools/tce-0.11.0/tanzu /opt/packages/tce-tools/bin/tanzu 
+
+tanzu plugin install all

@@ -7,21 +7,4 @@ TCE_TOOLS_URL=https://github.com/vmware-tanzu/community-edition/releases/downloa
 
 PACKAGE_DIR=$(cd "$(dirname $0)"; pwd)
 
-curl -sL --fail $TCE_TOOLS_URL -o /tmp/tce-tools.tar.gz
-
-mkdir /tmp/tce-tools
-
-tar -C /tmp/tce-tools --strip-components 1 -xf /tmp/tce-tools.tar.gz
-
-mkdir $PACKAGE_DIR/bin
-
-cd /tmp/tce-tools
-
-cp tanzu $PACKAGE_DIR/bin
-
-HOME=$PACKAGE_DIR
-PATH=$PACKAGE_DIR/bin:$PATH
-
-export ALLOW_INSTALL_AS_ROOT=true
-
-./install.sh
+curl -sL --fail $TCE_TOOLS_URL -o $PACKAGE_DIR/tce-0.11.0.tar.gz
