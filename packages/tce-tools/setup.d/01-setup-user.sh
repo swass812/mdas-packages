@@ -19,4 +19,4 @@ mkdir -p /opt/packages/tce-tools/bin
 
 ln -s /opt/packages/tce-tools/tce-0.11.0/tanzu /opt/packages/tce-tools/bin/tanzu 
 
-tanzu plugin install all
+/opt/packages/tce-tools/bin/tanzu plugin install all
