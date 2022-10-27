@@ -5,6 +5,8 @@
 set -x
 set -eo pipefail
 
+echo $PROJECT_DIR
+echo $(cd "$(dirname $BASH_SOURCE)/.."; pwd)
 cd $PROJECT_DIR/gemfire
 
 # INSTALL & UNPACK
