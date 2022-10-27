@@ -40,3 +40,5 @@ jobs:
         run: |
           packages/gemfire/build.sh
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/gemfire:sha-${REPOSITORY_SHA7} -f packages/gemfire --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/gemfire:latest -f packages/gemfire --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+
