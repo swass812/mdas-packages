@@ -1,10 +1,5 @@
-#!/bin/bash
 
 # Environment Set Up (Create Environment Variables)
-
-set -x
-set -eo pipefail
-
 
 export PROJECT_DIR=$(cd "$(dirname $BASH_SOURCE)/.."; pwd)
 # $HOME

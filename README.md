@@ -18,12 +18,12 @@ For clarification, To create the package I would create a folder containing prof
     docker push $REGISTRY/gemfire-image:latest
     ```
 
-## How to test package image creation
+## How to test package image creation (Make sure all necessary files have been copied in teh correct locations)
 1. Run Image as Container 
-```
-docker run -it --name gemfire [image-name] 
-```
-
+    ```
+    docker run -it --name gemfire $REGISTRY/gemfire-image:latest 
+    ```
+<!-- 
 ## Deploy to local image registry 
 1. Build pod
     ```
@@ -34,4 +34,4 @@ docker run -it --name gemfire [image-name]
 k exec -it deployment/registry -- bin/sh
 ```
 
-[image-name]:$REGISTRY/gemfire-image:latest
+[image-name]:$REGISTRY/gemfire-image:latest -->

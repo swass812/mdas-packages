@@ -5,7 +5,7 @@
 set -x
 set -eo pipefail
 
-cd $HOME/gemfire
+cd $PROJECT_DIR/gemfire
 
 # INSTALL & UNPACK
 # curl -o $VMWARE_GEMFIRE_TARGET.tgz https://spring-modern-data-architecture-files.s3.us-west-1.amazonaws.com/vmware-gemfire-9.15.0.tgz
