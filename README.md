@@ -51,8 +51,8 @@ For clarification, To create the package I would create a folder containing prof
     * Environment variables defined in `package-name/profile.d` (not `package-name/setup.d`)will exist in the workshop terminal (include path)
     * Files in `package-name/setup.d` MUST be made executable before publishing (**Note:** They will not run in workshop otherwise)
         ```
-        cd package-name/setup.d
-        chmod +x $(find . -type f -name "*.sh")
+        cd package-name/setup.d; chmod +x $(find . -type f -name "*.sh");
+        cd package-name/profile.d; chmod +x $(find . -type f -name "*.sh");
         ```
     * Files in `package-name/setup.d` MUST have `#!/bin/bash` at top of file
     * All scripts should start with the following lines (after `#!/bin/bash` if applicable)
@@ -70,7 +70,7 @@ For clarification, To create the package I would create a folder containing prof
 7. When packages are ready publish them
 
     In this repo there exists a github action in `.github/workflows/publish-packages.yaml` This automatically publishes packages to your GitHub Container registry.
-    
+
     1. Open `.github/workflows/publish-packages.yaml` in editor
     2. Add a Job to publish your package called `package-name` by copying the following into the publish-packages.yaml under `jobs:`
 

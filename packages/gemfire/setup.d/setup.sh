@@ -25,3 +25,4 @@ rm $(find -type f -name "*.tgz")
 # GET EXECUTEABLE GEMFIRE/GFSH
 cd $VMWARE_GEMFIRE_TARGET/bin
 cp -r $GEMFIRE_FOR_REDIS_TARGET /tmp
+
