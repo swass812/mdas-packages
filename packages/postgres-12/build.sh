@@ -2,3 +2,4 @@
 
 set -x
 set -eo pipefail
+mkdir test-from-postgres
