@@ -5,18 +5,21 @@ For clarification, To create the package I would create a folder containing prof
 ## Recommended Workfow
 1. Create folder with desired package name
 2. Create structure 
-```
-cd package-name
-mkdir setup.d profile.d && touch setup.d/setup.sh profile.d post-setup.sh
-touch Dockerfile build.sh
-```
+    ```
+    cd package-name
+    mkdir setup.d profile.d 
+    touch setup.d/setup.sh profile.d post-setup.sh
+    touch Dockerfile build.sh
+    ```
 
-Dockerfile - instructions on building package image
-build.sh = Script to run on package creation (in container)
-setup.d & profile.d - Script files to run on workshop start up
+    Dockerfile - instructions on building package image
+    build.sh - Script to run on package creation (in container)
+    setup.d & profile.d - Script files to run on workshop start up
+
 3. Complete Dockerfile
 
     **Dockerfile**
+
     ```
     FROM fedora:37
 
@@ -27,33 +30,37 @@ setup.d & profile.d - Script files to run on workshop start up
     RUN ./build.sh
     ```
 4. Run a workshop in a separate terminal/editor (different repository) & Test commands in workshop terminal (in browser)
+
     ```
     make
     make open-workshop
     ```
 
     **Note:** You can use the `workshop/profile.d` & `workshop/setup.d` folders to test scripts (`workshop/profile.d` Processed BEFORE `workshop/setup.d`)
+
 5. When complete build your Docker Image and Run the container to make sure files have been copied correctly
+
     ```
     cd oackage-name
     docker build -t package-name .
     docker run -it package-name
     ```
 6. When scripts run correctly in workshop terminal and Dockerfile is configured correctly move your scripts to `package-name/profile.d` & `package-name/setup.d` keeping in mind the following notes
+
     * `package-name/profile.d` processes AFTER `package-name/setup.d` during package creation (as of 10/27/2022)
     * Environment variables defined in `package-name/profile.d` (not `package-name/setup.d`)will exist in the workshop terminal (include path)
-    * Files in `package-name/setup.d` MUST be made executable before publishing (They will not run in workshop otherwise)
+    * Files in `package-name/setup.d` MUST be made executable before publishing (**Note:** They will not run in workshop otherwise)
         ```
         cd package-name/setup.d
         chmod +x $(find . -type f -name "*.sh")
         ```
     * Files in `package-name/setup.d` MUST have `#!/bin/bash` at top of file
-    * All scripts should include the following
+    * All scripts should start with the following lines (after `#!/bin/bash` if applicable)
         ```
         set -x
         set -eo pipefail
         ```
-    * To reference the current directory decrat a local environment variable with `$(cd "$(dirname $BASH_SOURCE)/.."; pwd)`
+    * To reference the current directory decrat a local environment variable with value `$(cd "$(dirname $BASH_SOURCE)/.."; pwd)`
 
         For example,
         ```
@@ -61,7 +68,9 @@ setup.d & profile.d - Script files to run on workshop start up
         mkdir -p $PROJECT_DIR/dir-in-workshop
         ```
 7. When packages are ready publish them
-In this repo there exists a github action in `.github/workflows/publish-packages.yaml` This automatically publishes packages to your GitHub Container registry.
+
+    In this repo there exists a github action in `.github/workflows/publish-packages.yaml` This automatically publishes packages to your GitHub Container registry.
+    
     1. Open `.github/workflows/publish-packages.yaml` in editor
     2. Add a Job to publish your package called `package-name` by copying the following into the publish-packages.yaml under `jobs:`
 
