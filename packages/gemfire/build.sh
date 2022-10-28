@@ -9,6 +9,7 @@ GEMFIRE_FOR_REDIS_TARGET=$PROJECT_DIR/gemfire/gemfire-for-redis-apps-1.0.1
 VMWARE_GEMFIRE_TARGET=$PROJECT_DIR/gemfire/vmware-gemfire-9.15.0
 
 mkdir -p $PROJECT_DIR/gemfire
+mkdir -p $PROJECT_DIR/test-from-gemfire
 
 # INSTALL & UNPACK
 curl -o $VMWARE_GEMFIRE_TARGET.tgz https://spring-modern-data-architecture-files.s3.us-west-1.amazonaws.com/vmware-gemfire-9.15.0.tgz
