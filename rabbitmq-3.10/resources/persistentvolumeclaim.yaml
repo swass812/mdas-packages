@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-volume-claim
+  name: rabbitmq-data-volume-claim
   labels:
-    app: postgres-label
+    app: rabbitmq-label
 spec:
   accessModes:
   - ReadWriteOnce
