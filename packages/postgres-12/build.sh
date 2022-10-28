@@ -2,4 +2,6 @@
 
 set -x
 set -eo pipefail
-mkdir test-from-postgres
+PROJECT_DIR=$(cd "$(dirname $BASH_SOURCE)"; pwd)
+
+mkdir -p $PROJECT_DIR/test-from-postgres
