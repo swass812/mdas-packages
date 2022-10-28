@@ -4,4 +4,4 @@ COPY . /opt/packages/postgres/
 
 WORKDIR /opt/packages/postgres
 
-# RUN ./build.sh
+RUN ./build.sh

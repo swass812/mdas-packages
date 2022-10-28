@@ -29,4 +29,12 @@ jobs:
           packages/gemfire/build.sh
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/gemfire:sha-${REPOSITORY_SHA7} -f packages/gemfire --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/gemfire:latest -f packages/gemfire --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+      
+      - name: Build and publish postgres-12
+        shell: bash
+        run: |
+          packages/postgres-12/build.sh
+          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/postgres-12:sha-${REPOSITORY_SHA7} -f packages/postgres-12 --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/postgres-12:latest -f packages/postgres-12 --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+
 
