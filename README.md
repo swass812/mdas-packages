@@ -54,6 +54,10 @@ For clarification, To create the package I would create a folder containing prof
         cd package-name/setup.d; chmod +x $(find . -type f -name "*.sh");
         cd package-name/profile.d; chmod +x $(find . -type f -name "*.sh");
         ```
+    * Files in `package-name/profild.d` MUST be made readable before publishing (**Note:** They will not run in workshop otherwise)
+        ```
+        cd package-name/profile.d; chmod +r $(find . -type f -name "*.sh");
+        ```
     * Files in `package-name/setup.d` MUST have `#!/bin/bash` at top of file
     * All scripts should start with the following lines (after `#!/bin/bash` if applicable)
         ```
