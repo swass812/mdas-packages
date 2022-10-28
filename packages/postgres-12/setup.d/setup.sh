@@ -4,5 +4,5 @@ set -eo pipefail
 
 PROJECT_DIR=$(cd "$(dirname $BASH_SOURCE)/.."; pwd) # /opt/packages/postgres-12/
 echo $PROJECT_DIR
-kubectl apply -f $PROJECT_DIR/resources
-kubectl rollout status deployment/postgres
+# kubectl apply -f $PROJECT_DIR/resources
+# kubectl rollout status deployment/postgres
