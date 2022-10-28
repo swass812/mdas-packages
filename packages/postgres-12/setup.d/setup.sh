@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Runs BEFORE profile.d (Executions)
 set -x
 set -eo pipefail
