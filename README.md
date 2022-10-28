@@ -1,6 +1,6 @@
 For clarification, To create the package I would create a folder containing profile.d setup.d, Docker file and build.sh (https://github.com/vmware-tanzu-labs/educates-extension-packages/tree/main/packages/tce-0.12) . Then modify the publish-packages.yaml (which is a github workflow and will update automatically on push to main) to deploy them to GHCR (using imgpkg from Carvel)
 
-
+**Note:** profile.d is process AFTER setup.d when building packages
 ## How to build image
 1. cd into package folder
     ```

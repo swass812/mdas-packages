@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Unpack tar Files
-
+# Runs BEFORE profile.d (Executions)
 set -x
 set -eo pipefail
 
-PROJECT_DIR=$(cd "$(dirname $BASH_SOURCE)/.."; pwd)
+PROJECT_DIR=$(cd "$(dirname $BASH_SOURCE)/.."; pwd) # /opt/packages/gemfire
 
-echo $VMWARE_GEMFIRE_TARGET
+GEMFIRE_FOR_REDIS_TARGET=$PROJECT_DIR/gemfire-for-redis-apps-1.0.1
+VMWARE_GEMFIRE_TARGET=$PROJECT_DIR/vmware-gemfire-9.15.0
 
 cd $PROJECT_DIR/gemfire
 
