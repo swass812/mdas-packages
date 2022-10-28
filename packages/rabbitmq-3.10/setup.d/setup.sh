@@ -6,15 +6,15 @@ set -eo pipefail
 
 PROJECT_DIR=$(cd "$(dirname $BASH_SOURCE)/.."; pwd) # /opt/packages/postgres-12/
 
+# MAKE SURE VIRTUAL CLUSTER IS ENABLE FOR NAMESPACE CREATION
+# https://docs.educates.dev/custom-resources/workshop-definition.html#provisioning-a-virtual-cluster
+
+# Install Cluster Operator
 kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"
-kubectl apply -f https://raw.githubusercontent.com/rabbitmq/cluster-operator/main/docs/examples/hello-world/rabbitmq.yaml
-# apiVersion: rabbitmq.com/v1beta1
-# kind: RabbitmqCluster
-# metadata:
-#     name: hello-world
 
+# Create Cluster
+# k apply -f $PROJECT_DIR/resources/
 
-# TEST: k get all
 
 #https://www.rabbitmq.com/kubernetes/operator/quickstart-operator.html
 
