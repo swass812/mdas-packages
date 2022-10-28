@@ -49,15 +49,22 @@ For clarification, To create the package I would create a folder containing prof
 
     * `package-name/profile.d` processes AFTER `package-name/setup.d` during package creation (as of 10/27/2022)
     * Environment variables defined in `package-name/profile.d` (not `package-name/setup.d`)will exist in the workshop terminal (include path)
-    * Files in `package-name/setup.d` MUST be made executable before publishing (**Note:** They will not run in workshop otherwise)
+    * Files in `package-name/setup.d` MUST be made **executable** before publishing (**Note:** They will not run in workshop otherwise)
         ```
         cd package-name/setup.d; chmod +x $(find . -type f -name "*.sh");
-        cd package-name/profile.d; chmod +x $(find . -type f -name "*.sh");
         ```
-    * Files in `package-name/profild.d` MUST be made readable before publishing (**Note:** They will not run in workshop otherwise)
+    * Files in `package-name/profild.d` MUST be made **readable** before publishing (**Note:** They will not run in workshop otherwise)
         ```
         cd package-name/profile.d; chmod +r $(find . -type f -name "*.sh");
         ```
+
+    Check if file has read permissions: `test -r script.sh && echo $?` (1=false, 0=true)
+    Check if file has execute permissions: `test -x script.sh && echo $?` (1=false, 0=true)
+
+    Remove Permisson `chmod -rx script.sh`
+
+    **Note:** Create container rins `test -r *.sh` or `[ -r *.sh]` (or -x) on specific script files to check if they are readable or executeable befor sourcing or executing.
+
     * Files in `package-name/setup.d` MUST have `#!/bin/bash` at top of file
     * All scripts should start with the following lines (after `#!/bin/bash` if applicable)
         ```
