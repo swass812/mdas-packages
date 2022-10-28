@@ -1,5 +1,4 @@
-# POSTGRES_POD_NAME=$(kubectl get pod -l app=postgres -o jsonpath="{.items[0].metadata.name}")
-# alias psql='kubectl exec -it $POSTGRES_POD_NAME -- psql'
+POSTGRES_POD_NAME=$(kubectl get pod -l app=postgres -o jsonpath="{.items[0].metadata.name}")
+alias psql='kubectl exec -it $POSTGRES_POD_NAME -- psql'
 
-# PROJECT_DIR=$(cd "$(dirname $BASH_SOURCE)/.."; pwd) # /opt/packages/postgres-12/
-PATH=test:$PATH
+# PATH=test:$PATH
