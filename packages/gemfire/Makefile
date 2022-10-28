@@ -1,10 +1,12 @@
-REGISTRY = localhost:5001
 PROJECT = gemfire
-IMAGE_NAME = ${REGISTRY}/${PROJECT}-image:latest
 
+IMAGE_NAME = ${PROJECT}-image
+
+# make
 all: 
-	docker image ls localhost:5001/gemfire-image:latest
-
+	docker image ls ${IMAGE_NAME}
+	
+# make image-history
 image-history:
 	docker image history ${IMAGE_NAME}
 
