@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  publish-packages:
+  publish-gemfire:
+    name: Publish gemfire
     runs-on: ubuntu-20.04
 
     steps:
@@ -29,7 +30,25 @@ jobs:
           packages/gemfire/build.sh
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/gemfire:sha-${REPOSITORY_SHA7} -f packages/gemfire --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/gemfire:latest -f packages/gemfire --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
-      
+
+  publish-postgres:
+    name: Publish postgres-12
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Install imgpkg
+        shell: bash
+        run: |
+          wget -nv -O- https://github.com/vmware-tanzu/carvel-imgpkg/releases/download/v0.28.0/imgpkg-linux-amd64 > /tmp/imgpkg
+          chmod 755 /tmp/imgpkg
+
+      - name: Calculate variables
+        run: |
+          echo "REPOSITORY_SHA7=${GITHUB_SHA::7}" >>${GITHUB_ENV}
+
       - name: Build and publish postgres-12
         shell: bash
         run: |
