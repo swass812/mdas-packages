@@ -78,7 +78,7 @@ jobs:
         shell: bash
         run: |
           packages/homebrew/build.sh
-          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/homebrew:sha-${REPOSITORY_SHA7} -f packages/homebrew2 --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/homebrew:sha-${REPOSITORY_SHA7} -f packages/homebrew --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/homebrew:latest -f packages/homebrew --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
 
 
