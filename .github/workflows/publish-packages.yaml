@@ -55,5 +55,30 @@ jobs:
           packages/postgres-12/build.sh
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/postgres-12:sha-${REPOSITORY_SHA7} -f packages/postgres-12 --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
           /tmp/imgpkg push -i ghcr.io/${{github.repository}}/postgres-12:latest -f packages/postgres-12 --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+  
+  publish-hombrew:
+    name: Publish homebrew
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Install imgpkg
+        shell: bash
+        run: |
+          wget -nv -O- https://github.com/vmware-tanzu/carvel-imgpkg/releases/download/v0.28.0/imgpkg-linux-amd64 > /tmp/imgpkg
+          chmod 755 /tmp/imgpkg
+
+      - name: Calculate variables
+        run: |
+          echo "REPOSITORY_SHA7=${GITHUB_SHA::7}" >>${GITHUB_ENV}
+
+      - name: Build and publish homebrew
+        shell: bash
+        run: |
+          packages/homebrew/build.sh
+          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/homebrew:sha-${REPOSITORY_SHA7} -f packages/homebrew2 --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
+          /tmp/imgpkg push -i ghcr.io/${{github.repository}}/homebrew:latest -f packages/homebrew --registry-username=${{github.actor}} --registry-password=${{secrets.GITHUB_TOKEN}}
 
 

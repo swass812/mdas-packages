@@ -177,15 +177,19 @@ For clarification, To create the package I would create a folder containing prof
     ```
     docker run -it --name gemfire $REGISTRY/gemfire-image:latest 
     ```
-<!-- 
-## Deploy to local image registry 
-1. Build pod
-    ```
-    kubectl apply -f test.yaml
-    ```
-## Exec into Registry
+
+## Add environment variables
+In `setup.d` you can append export statments or aliases to `$HOME/.bash_profile` or you can add export statments to `profile.d`
+
+**profil.d/post-setup.sh**
+
 ```
-k exec -it deployment/registry -- bin/sh
+export ENV_VAR=variable-value
 ```
 
-[image-name]:$REGISTRY/gemfire-image:latest -->
+or
+**setup.d/setup.sh**
+
+```
+echo "alias psql='kubectl exec -it $POD_NAME -- psql'" >> .bash_profile
+```
